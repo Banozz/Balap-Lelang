@@ -13,8 +13,11 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                roboto: ['Roboto', 'sans-serif'],
             },
+            fontWeight: {
+                'roboto-bold': 500,
+            }
         },
     },
 
