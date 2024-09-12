@@ -11,31 +11,30 @@
     <h1>Edit Car</h1>
     <form method="POST" action="{{ route('cars.update', $car->id) }}" enctype="multipart/form-data">
         @csrf
-        @method('PUT')
+        @method('PATCH')
         <div class="mb-3">
-            <label for="brandName" class="form-label">Brand Name</label>
-            <input type="text" class="form-control" id="brandName" name="brandName" value="{{ $car->Brand_Name }}" required>
+            <label for="Brand" class="form-label">Brand Name</label>
+            <input type="text" class="form-control" id="Brand" name="Brand" value="{{ $car->Brand }}" required>
         </div>
         <div class="mb-3">
-            <label for="carName" class="form-label">Car Name</label>
-            <input type="text" class="form-control" id="carName" name="carName" value="{{ $car->Name }}" required>
+            <label for="Name" class="form-label">Car Name</label>
+            <input type="text" class="form-control" id="Name" name="Name" value="{{ $car->Name }}" required>
         </div>
         <div class="mb-3">
-            <label for="carPrice" class="form-label">Car Price</label>
-            <input type="number" class="form-control" id="carPrice" name="carPrice" value="{{ $car->Price }}" required>
+            <label for="Price" class="form-label">Car Price</label>
+            <input type="number" class="form-control" id="Price" name="Price" value="{{ $car->Price }}" required>
         </div>
         <div class="mb-3">
-            <label for="carDesc" class="form-label">Car Description</label>
-            <textarea class="form-control" id="carDesc" name="carDesc" rows="3" required>{{ $car->Description }}</textarea>
+            <label for="Description" class="form-label">Car Description</label>
+            <textarea class="form-control" id="Description" name="Description" rows="3" required>{{ $car->Description }}</textarea>
         </div>
         <div class="mb-3">
-            <label for="carLoc" class="form-label">Car Location</label>
-            <input type="text" class="form-control" id="carLoc" name="carLoc" value="{{ $car->Location }}" required>
+            <label for="Location" class="form-label">Car Location</label>
+            <input type="text" class="form-control" id="Location" name="Location" value="{{ $car->Location }}" required>
         </div>
         <div class="mb-3">
-            <label for="imageFile" class="form-label">Car Image</label>
-            <input type="file" class="form-control" id="imageFile" name="imageFile">
-            <img src="{{ asset('storage/' . $car->Image) }}" class="img-thumbnail mt-2" width="150" alt="Car Image">
+            <label for="Image_Car" class="form-label">Car Image</label>
+            <input type="file" class="form-control" id="Image_Car" name="Image_Car">
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>

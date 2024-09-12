@@ -48,7 +48,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-2">
-                                    <h5 class="text-lg font-bold">{{ $car->Brand_Name }} {{ $car->Name }}</h5>
+                                    <h5 class="text-lg font-bold">{{ $car->Brand }} {{ $car->Name }}</h5>
                                     <div class="">
                                         <p class="text-gray-700">{{ $car->Description }}</p>
                                     </div>
@@ -59,6 +59,14 @@
                                             </span>
                                             <div class="inline-block break-words text-black">
                                                 102,310ks
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center box-border">
+                                            <span class="mr-2.5 break-words text-black">
+                                                @include('component-description.fuel')
+                                            </span>
+                                            <div class="inline-block break-words text-black">
+                                            Premium Unleaded Petrol 2
                                             </div>
                                         </div>
                                         <div class="flex items-center box-border">
@@ -75,6 +83,14 @@
                                             </span>
                                             <div class="inline-block break-words text-black">
                                             Premium Unleaded Petrol
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center box-border">
+                                            <span class="mr-2.5 break-words text-black">
+                                                @include('component-description.fuel')
+                                            </span>
+                                            <div class="inline-block break-words text-black">
+                                            Premium Unleaded Petrol 1
                                             </div>
                                         </div>
                                         <div class="flex items-center box-border">
@@ -101,6 +117,12 @@
                                             <span class="inline-block ms-1">
                                                 ${{ $car->Price }}
                                             </span>
+                                            <span class="inline-block ms-1">
+                                                ${{ $car->Price }}
+                                            </span>
+                                            <span class="inline-block ms-1">
+                                                ${{ $car->Price }}
+                                            </span>
                                         </div>
                                         <p class="text-sm text-black">{{ $car->Location }}</p>
                                     </div>
@@ -112,7 +134,7 @@
                                     </a>
                                     <form method="post" action="{{ route('cars.destroy', $car->id) }}" class="hiddenBtn mt-2">
                                         @csrf
-                                        @method('delete')
+                                        @method('DELETE')
                                         <button type="submit" name="delete" class='bg-red-500 text-white rounded px-2 py-1 inline-block'>Delete</button>
                                     </form>  
                                 </div>

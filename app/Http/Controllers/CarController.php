@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 {
@@ -65,13 +66,13 @@ class CarController extends Controller
      */
     public function edit(Car $car)
     {
-        return view('cars.edit', compact('cars'));
+        return view('car.edit', compact('car'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Car $cars)
+    public function update(Request $request, Car $car)
     {
         $request->validate([
             'Brand' => 'required',
@@ -84,26 +85,33 @@ class CarController extends Controller
 
         if ($request->hasFile('Image_Car')) {
             $imagePath = $request->file('Image_Car')->store('public/Image_Car');
-            $cars->Image_Car = $imagePath;
+            $car->Image_Car = $imagePath;
         }
 
-        $cars->update([
-            'Brand' => $request->Brand,
-            'Name' => $request->Name,
-            'Price' => $request->Price,
-            'Description' => $request->Description,
-            'Location' => $request->Location
-        ]);
+        $data = $request->only(['Brand', 'Name', 'Price', 'Description', 'Location']);
+        if ($request->hasFile('Image_Car')) {
+            if ($car->Image_Car) {
+                Storage::delete('public/Image_Car/' . $car->Image_Car);
+            }
+            $path = $request->file('Image_Car')->store('public/Image_Car');
+            $data['Image_Car'] = basename($path);
+        }
 
-        return redirect()->route('car.index');
+        $car->update($data);
+
+        return redirect()->route('index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Car $cars)
-    {
-        $cars->delete();
-        return redirect()->route('car.index');
+    public function destroy(Car $car)
+    {   
+        if ($car->Image_Car) {
+            Storage::delete($car->Image_Car);
+        }
+
+        $car->delete();
+        return redirect()->route('index');
     }
 }
